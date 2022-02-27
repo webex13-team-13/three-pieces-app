@@ -2,37 +2,78 @@
   <h1>Vue メモ</h1>
   <div class="memo-list">
     <ul class="memo-list__container">
-      <li class="memo">
+      <li
+        class="memo"
+        v-for="(memoNakami, index) in memoNakamis"
+        v-bind:key="index"
+      >
         <div class="memo__checkbox">
-          <input type="checkbox" />
+          <input type="checkbox" v-model="memoNakami.isDone" />
+          <!--v-model="memo.isDone" -->
         </div>
-        <div class="memo__text">ひき肉を300g買う</div>
-        <button class="memo__delete">削除</button>
-      </li>
-      <li class="memo">
-        <div class="memo__checkbox">
-          <input type="checkbox" />
+        <div class="memo__text memo__text--done" v-if="memoNakami.isDone">
+          {{ memoNakami.text }}
         </div>
-        <div class="memo__text">ホウレンソウを1束買う</div>
-        <button class="memo__delete">削除</button>
-      </li>
-      <li class="memo">
-        <div class="memo__checkbox">
-          <input type="checkbox" />
+        <div class="memo__text" v-else>
+          {{ memoNakami.text }}
         </div>
-        <div class="memo__text">ピーマンを2個買う</div>
-        <button class="memo__delete">削除</button>
+        <!--<div class="memo__text">
+          {{ memoNakami.text }}
+        </div>-->
+        <button class="memo__delete" v-on:click="deleteMemo(index)">
+          削除
+        </button>
       </li>
     </ul>
     <div class="add-memo-field">
-      <input class="add-memo-field__input" type="text" />
-      <button class="add-memo-field__button">追加</button>
+      <input class="add-memo-field__input" type="text" v-model="inputValue" />
+      <button class="add-memo-field__button" v-on:click="addMemo">追加</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      inputValue: "",
+      memoNakamis: [
+        { text: "ひき肉を300g買う", isDone: false },
+        {
+          text: "ホウレンソウを1束買う",
+          isDone: false,
+        },
+        { text: "ピーマンを2個買う", isDone: false },
+      ],
+    }
+  },
+  methods: {
+    //イベントハンドラを入れる.１配列。２削除、３チェックボックス
+    addMemo() {
+      if (this.inputValue !== "") {
+        const memo = {
+          text: this.inputValue,
+          isDone: false,
+        }
+        this.memoNakamis.push(memo)
+        //alert("やっほho～")
+        this.inputValue = ""
+      }
+    },
+    deleteMemo(index) {
+      //alert("huhu")
+      this.memoNakamis.splice(index, 1)
+      //alert("やっほほ")
+    },
+    /*
+    createCard1: function () {
+      document.createElement("div")
+      this.createCard.className = "memo__checkbox"
+      alert("a")
+    },*/
+  },
+}
+/*const create = function () {}*/
 </script>
 
 <style scoped>
