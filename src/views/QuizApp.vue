@@ -1,29 +1,55 @@
 <template>
   <h1>Vue クイズ</h1>
   <div class="app">
-    <h2>Q. {{ "クイズタイトル" }}</h2>
+    <h2>Q. {{ "ロシアの世界遺産に登録されるこの建物は何でしょう？" }}</h2>
     <img
       class="quiz-image"
-      src="https://via.placeholder.com/300x300"
-      alt="クイズタイトル"
+      src="@/assets/quiz_image.jpg"
+      alt="ロシアの世界遺産"
     />
     <div class="container">
-      <button>
-        {{ "選択肢1" }}
-      </button>
-      <button>
-        {{ "選択肢2" }}
-      </button>
-      <button>
-        {{ "選択肢3" }}
+      <button
+        v-for="(choice, i) in choices"
+        v-bind:key="i"
+        v-on:click="choiced(choice)"
+      >
+        {{ choice.text }}
       </button>
     </div>
-    <div>{{ "答え" }}</div>
+    <div>{{ kotae }}</div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      kotae: "",
+      choices: [
+        {
+          text: "宮殿",
+          isCorrect: false,
+          kotae: "残念でした🤦‍♀️",
+        },
+        {
+          text: "美術館",
+          isCorrect: true,
+          kotae: "正解！",
+        },
+        {
+          text: "学校",
+          isCorrect: false,
+          kotae: "残念でした🤦‍♀️",
+        },
+      ],
+    }
+  },
+  methods: {
+    choiced(choice) {
+      this.kotae = choice.kotae
+    },
+  },
+}
 </script>
 
 <style>
