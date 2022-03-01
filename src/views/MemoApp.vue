@@ -5,7 +5,7 @@
       <li
         class="memo"
         v-for="(memoNakami, index) in memoNakamis"
-        v-bind:key="index"
+        v-bind:key="memoNakami"
       >
         <div class="memo__checkbox">
           <input type="checkbox" v-model="memoNakami.isDone" />
@@ -49,7 +49,8 @@ export default {
   },
   methods: {
     //イベントハンドラを入れる.１配列。２削除、３チェックボックス
-    addMemo() {
+
+    addMemo: function () {
       if (this.inputValue !== "") {
         const memo = {
           text: this.inputValue,
