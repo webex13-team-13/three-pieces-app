@@ -1,5 +1,8 @@
 <template>
   <div>オリジナルアプリ</div>
+  <div>
+    <button>投稿</button>
+  </div>
 </template>
 
 <script>
