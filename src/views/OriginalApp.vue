@@ -1,5 +1,5 @@
 <template>
-  <div>オリジナルアプリ</div>
+  <div>～地域別あるある投稿サイト～</div>
   <div>
     <button>投稿</button>
   </div>
