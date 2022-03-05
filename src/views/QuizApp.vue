@@ -17,6 +17,9 @@
       </button>
     </div>
     <div>{{ kotae }}</div>
+    <div v-if="nextPage">
+      <router-link to="/quizApp2">次の問題へ</router-link>
+    </div>
   </div>
 </template>
 
@@ -42,11 +45,17 @@ export default {
           kotae: "残念でした🤦‍♀️",
         },
       ],
+      nextPage: false,
     }
   },
   methods: {
     choiced(choice) {
       this.kotae = choice.kotae
+      if (choice.isCorrect) {
+        this.nextPage = true
+      } else {
+        this.nextPage = false
+      }
     },
   },
 }
