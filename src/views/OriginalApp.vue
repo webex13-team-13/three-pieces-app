@@ -1,16 +1,18 @@
 <template>
   <!--<div>オリジナルアプリ</div>-->
   <div class="view">
-    <h1>無人島にひとつだけもっていくとしたら...？</h1>
+    <br />
+    <Marquee width="900" behavior="alternate" scrollamount="4"
+      ><h1>無人島にひとつだけもっていくとしたら...？</h1></Marquee
+    >
     <!--<div>ランキングをここに表示できたらいいな。でもわからないな</div>-->
-    <div>
+    <div class="about">
       <ul>
         <li v-for="(idea, index) in ideas" v-bind:key="index">
           {{ idea.text }}
           <button v-on:click="sakuzyo">削除</button>
         </li>
       </ul>
-
       <!--選択肢形式にします-->
       <input
         type="radio"
@@ -84,12 +86,27 @@ export default {
 
 <style scoped>
 h1 {
+  font-family: 游ゴシック;
+  color: dimgray;
   size: 10px;
+  text-align: center;
 }
+.about {
+  background-color: white;
+  color: black;
+  opacity: 0.6;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
 .view {
   background-image: url(~@/assets/mujinto_image.jpg);
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: white;
 }
 </style>
