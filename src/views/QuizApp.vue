@@ -1,7 +1,7 @@
 <template>
   <h1>Vue クイズ</h1>
   <div class="app">
-    <h2>Q. {{ "ロシアの世界遺産に登録されるこの建物は何でしょう？" }}</h2>
+    <h2>Q. ロシアの世界遺産に登録されるこの建物は何でしょう？</h2>
     <img
       class="quiz-image"
       src="@/assets/quiz_image.jpg"
